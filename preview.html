@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inundation Level</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Inundation Meter</h1>
+    <p>This map will show how the water level rises.</p>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map', {
+            center: [22.247049, -97.861990], // Coordinates (latitude, longitude)
+            zoom: 13,
+            maxBounds: [[22.1, -97.9], [22.4, -97.7]], // Set the boundaries (approximate for your city)
+            maxBoundsViscosity: 1.0, // This keeps the user within the bounds
+        });
+
+        // Add Mapbox satellite tiles
+        L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYTAxNDEwMDk0IiwiYSI6ImNtMXdqNmw1MTBvYm8yanBmM3N1M3J5ZDMifQ.lkICDeb1bZ-cHPwrANnVlA', {
+            attribution: '© Mapbox © OpenStreetMap contributors',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1IjoiYTAxNDEwMDk0IiwiYSI6ImNtMXdqNmw1MTBvYm8yanBmM3N1M3J5ZDMifQ.lkICDeb1bZ-cHPwrANnVlA' // Replace with your actual Mapbox token
+        }).addTo(map);
+
+        // Example marker on the map
+        var marker = L.marker([22.227049, -97.861992]).addTo(map)
+            .bindPopup('Be careful when being around here.')
+            .openPopup();
+    </script>
+</body>
+</html>
